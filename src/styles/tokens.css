@@ -1,0 +1,33 @@
+:root {
+  --primary: #37bdf8;
+  --accent: #e8793a;
+  --bg: #07121c;
+  --bg-darker: #040a0f;
+  --text: #eae7e2;
+  --text-muted: #5a5a5e;
+  --font-main: 'Outfit', 'Inter', system-ui, sans-serif;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-main);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+canvas {
+  display: block;
+}
+
+html {
+  scroll-behavior: smooth;
+}
