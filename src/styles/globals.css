@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #37bdf8;
+  --color-accent: #e8793a;
+  --color-pool-blue: #0ea5e9;
+  --color-pool-dark: #07121c;
+}
+
+@keyframes moveBackground {
+  from {
+    background-position: 0% 0%;
+  }
+  to {
+    background-position: 0% -1000%;
+  }
+}
+
+:root {
+  --font-main: 'Outfit', 'Inter', system-ui, sans-serif;
+}
+
+body {
+  background-color: var(--color-pool-dark);
+  color: white;
+  font-family: var(--font-main);
+  overflow-x: hidden;
+}
+
+canvas {
+  display: block;
+}

@@ -4,9 +4,14 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const ScrollVideoBackground = ({ frameCount = 30, framePath = '/bg-frames/frame-' }) => {
-  const canvasRef = useRef(null);
-  const [images, setImages] = useState([]);
+interface ScrollVideoBackgroundProps {
+  frameCount?: number;
+  framePath?: string;
+}
+
+const ScrollVideoBackground: React.FC<ScrollVideoBackgroundProps> = ({ frameCount = 30, framePath = '/bg-frames/frame-' }) => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [images, setImages] = useState<HTMLImageElement[]>([]);
   const [loadedCount, setLoadedCount] = useState(0);
 
   useEffect(() => {
@@ -38,9 +43,13 @@ const ScrollVideoBackground = ({ frameCount = 30, framePath = '/bg-frames/frame-
     const canvas = canvasRef.current;
     const context = canvas.getContext('2d');
 
-    const render = (index) => {
+    const render = (index: number) => {
       const img = images[Math.floor(index)];
-      if (img && img.complete) {
+      if (img && img.complete && canvasRef.current) {
+        const canvas = canvasRef.current;
+        const context = canvas.getContext('2d');
+        if (!context) return;
+        
         const { width, height } = canvas;
         const imgRatio = img.width / img.height;
         const canvasRatio = width / height;

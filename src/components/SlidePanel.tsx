@@ -4,11 +4,17 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const SlidePanel = ({ title, content }) => {
-  const panelRef = useRef(null);
-  const innerRef = useRef(null);
+interface SlidePanelProps {
+  title: string;
+  content: string;
+}
+
+const SlidePanel: React.FC<SlidePanelProps> = ({ title, content }) => {
+  const panelRef = useRef<HTMLDivElement>(null);
+  const innerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (!innerRef.current || !panelRef.current) return;
     // Slide up animation
     gsap.fromTo(innerRef.current,
       { y: '100%', opacity: 0 },

@@ -4,10 +4,15 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const ScrollFloat = ({ text = "BUILD / WITH MOTION" }) => {
-  const containerRef = useRef(null);
+interface ScrollFloatProps {
+  text?: string;
+}
+
+const ScrollFloat: React.FC<ScrollFloatProps> = ({ text = "BUILD / WITH MOTION" }) => {
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (!containerRef.current) return;
     const chars = containerRef.current.querySelectorAll('.char');
     
     gsap.fromTo(chars, 
