@@ -18,7 +18,7 @@ const ScrollVideoBackground: React.FC<ScrollVideoBackgroundProps> = ({ frameCoun
     const loadedImages = [];
     if (frameCount <= 1) {
       const img = new Image();
-      img.src = '/assets/hero.png';
+      img.src = 'https://images.unsplash.com/photo-1572331165267-854da2b10ccc?q=80&w=1480';
       img.onload = () => {
         setLoadedCount(1);
       };

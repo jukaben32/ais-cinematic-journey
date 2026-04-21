@@ -178,6 +178,21 @@ export const GlassFilter: React.FC = () => (
 
 // Main Component
 export const LiquidGlassHero = () => {
+  const [bgIndex, setBgIndex] = React.useState(0);
+  const backgrounds = [
+    "https://images.unsplash.com/photo-1519046904884-53103b34b206?q=80&w=1480",
+    "https://images.unsplash.com/photo-1540541338287-41700207dee6?q=80&w=1480",
+    "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1480",
+    "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=1480"
+  ];
+
+  React.useEffect(() => {
+    const timer = setInterval(() => {
+      setBgIndex((prev) => (prev + 1) % backgrounds.length);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, [backgrounds.length]);
+
   const dockIcons: DockIcon[] = [
     {
       src: "https://cdn-icons-png.flaticon.com/512/3144/3144467.png", // Cleaning icon
@@ -207,11 +222,12 @@ export const LiquidGlassHero = () => {
 
   return (
     <div
-      className="min-h-screen h-full flex items-center justify-center font-light relative overflow-hidden w-full"
+      className="min-h-screen h-full flex items-center justify-center font-light relative overflow-hidden w-full transition-all duration-1000"
       style={{
-        background: `url("https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?q=80&w=1480&auto=format&fit=crop") center center`,
+        backgroundImage: `url("${backgrounds[bgIndex]}")`,
         backgroundSize: 'cover',
-        animation: "moveBackground 60s linear infinite",
+        backgroundPosition: 'center',
+        animation: "moveBackground 120s linear infinite",
       }}
     >
       <GlassFilter />
@@ -221,7 +237,7 @@ export const LiquidGlassHero = () => {
 
         <GlassButton href="#">
           <div className="text-xl text-white">
-            <p>How can we refresh your pool today?</p>
+            <p>¿En qué podemos ayudar a tu piscina hoy?</p>
           </div>
         </GlassButton>
       </div>     
